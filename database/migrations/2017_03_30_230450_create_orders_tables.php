@@ -13,7 +13,18 @@ class CreateOrdersTables extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('orders', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('customer_id');
+            $table->date('paid_at');
+        });
+
+        Schema::create('orders_products', function(Blueprint $table)
+        {
+            $table->integer('order_id');
+            $table->integer('product_id');
+        });
     }
 
     /**
@@ -23,6 +34,7 @@ class CreateOrdersTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('orders');
+        Schema::drop('orders_products');
     }
 }
