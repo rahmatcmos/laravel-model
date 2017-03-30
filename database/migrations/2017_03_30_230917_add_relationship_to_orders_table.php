@@ -13,8 +13,10 @@ class AddRelationshipToOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
+        Schema::table('orders', function (Blueprint $table)
+        {
+            $table->integer('customer_id')->unsigned()->change();
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,8 +27,19 @@ class AddRelationshipToOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
+        Schema::table('orders', function(Blueprint $table)
+        {
+            $table->dropForeign('orders_customer_id_foreign');
+        });
+
+        Schema::table('orders', function(Blueprint $table)
+        {
+            $table->dropIndex('orders_customer_id_foreign');
+        });
+
+        Schema::table('orders', function(Blueprint $table)
+        {
+            $table->integer('customer_id')->change();
         });
     }
 }
