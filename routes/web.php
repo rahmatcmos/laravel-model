@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/product-query', function() {
+  DB::connection()->enableQueryLog();
+
+  /* Update dan forgot(hapus) cache
+  DB::table('products')->where('id', 1)->update(['price'=>110000000]);
+  Cache::forget('product.lowest-price');
+  */
+
+  $product = Cache::remember('product.lowest-price', 10, function()
+  {
+    return DB::table('products')->where('price', DB::table('products')->min('price'))->get();
+  });
+  var_dump($product);
+  var_dump(DB::getQueryLog());
+});
+
 Route::get('/customers-log', function() {
   DB::connection()->enableQueryLog();
   $products = DB::table('products')->get();
