@@ -11,20 +11,20 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
-         [
-           'name' => "Toyota Alphard",
-           'price' => 150000000,
-           'stock' => 4,
-         ],
 
-         [
-            'name' => "Toyota Avanza",
-            'price' => 350000,
-            'stock' => 8,
-         ]
-     ]);
-     
+      $products = ["Accord", "Civic", "City", "CR-V", "Jazz", "Freed", "Mobilio"];
+      $descriptions = ["Tipe Manual", "Tipe Otomatis"];
+      foreach ($products as $product) {
+          DB::table('products')->insert([
+             [
+               'name' => $product,
+               'description' => $descriptions[rand(0,1)],
+               'price' => rand(100,800) * 1000000,
+               'stock' => rand(10,40)
+             ]
+          ]);
+      }
+
      $this->command->info('Berhasil menambah 2 mobil!');
     }
 }
