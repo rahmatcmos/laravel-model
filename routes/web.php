@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/customers-log', function() {
+  DB::connection()->enableQueryLog();
+  $products = DB::table('products')->get();
+  $products = DB::table('customers')->whereIn('id', [1,4,5])->select(['name','phone'])->get();
+  $customers = DB::table('customers')->leftJoin('membership_types','customers.membership_type_id', '=', 'membership_types.id')->get();
+  //var_dump(DB::getQueryLog());
+  /* DD Helper output log lebih menarik
+  dd(DB::getQueryLog());
+  */
+});
+
 Route::get('/order-product-manual', function() {
     // memulai transaksi
     DB::beginTransaction();
