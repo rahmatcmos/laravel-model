@@ -17,7 +17,7 @@ class CreateOrdersTables extends Migration
         {
             $table->increments('id');
             $table->integer('customer_id');
-            $table->date('paid_at');
+            $table->timestamps('paid_at');
         });
 
         Schema::create('orders_products', function(Blueprint $table)
