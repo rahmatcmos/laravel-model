@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/customer/{id}', function($id) {
+  try {
+    $customer = App\Models\Customer::findOrFail($id);
+    return $customer;
+  } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    return "Oppsss.. Customer tidak ditemukan";
+  }
+});
+
 Route::get('/product-query', function() {
   DB::connection()->enableQueryLog();
 
