@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+
+    protected $connection = 'mysql2';
+
     protected $dates = ['deleted_at'];
     /* Timestamps
     public $timestamps = false;
