@@ -13,7 +13,18 @@ class CreateMembershipTypesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('membership_types', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('type');
+            $table->integer('discount');
+            $table->integer('yearly_fee');
+        });
+
+        Schema::table('customers', function(Blueprint $table)
+        {
+            $table->integer('membership_type_id')->unsigned()->nullable();
+        });
     }
 
     /**
@@ -23,6 +34,11 @@ class CreateMembershipTypesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('customers', function(Blueprint $table)
+        {
+            $table->dropColumn('membership_type_id');
+        });
+        
+        Schema::drop('membership_types');
     }
 }
