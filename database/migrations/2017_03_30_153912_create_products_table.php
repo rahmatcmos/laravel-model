@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
           $table->string('description')->nullable();
           $table->integer('price')->unsigned();
           $table->integer('stock')->unsigned();
+          $table->boolean('published')->nullable();
           $table->timestamps();
           $table->softDeletes();
         });
