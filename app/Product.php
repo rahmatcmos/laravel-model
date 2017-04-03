@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+    use \App\Scope\PublishedTrait;
 
     protected $connection = 'mysql2';
 
