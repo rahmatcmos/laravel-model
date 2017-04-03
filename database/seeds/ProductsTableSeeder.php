@@ -20,11 +20,12 @@ class ProductsTableSeeder extends Seeder
                'name' => $product,
                'description' => $descriptions[rand(0,1)],
                'price' => rand(100,800) * 1000000,
-               'stock' => rand(10,40)
+               'stock' => rand(10,40),
+               'published' => rand(0,1)
              ]
           ]);
       }
 
-     $this->command->info('Berhasil menambah 2 mobil!');
+     $this->command->info('Berhasil menambah mobil!');
     }
 }
