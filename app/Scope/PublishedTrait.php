@@ -5,4 +5,9 @@ trait PublishedTrait {
   {
     return $query->where('published', 1);
   }
+
+  public function scopeDraft($query)
+  {
+    return $query->where('published', '!=', 1);
+  }
 }
