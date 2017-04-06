@@ -21,7 +21,13 @@ class Product extends Model
     {
       parent::boot();
 
-      static::observe(new \App\ProductObserver);
+      static::updating(function($model) {
+        if ( DB::table('orders_products')->where('product_id', $model->id)->count() > 0 && $model->isDirty('name')) {
+            return false;
+        }
+      });
+
+      // static::observe(new \App\ProductObserver);
 
       /*static::created(function($model) {
         \Log::info('Berhasil menambah ' . $model->name . '. Stok : ' . $model->stock);
