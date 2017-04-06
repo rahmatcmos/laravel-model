@@ -14,11 +14,17 @@ class PostsTableSeeder extends Seeder
     {
       $faker = Faker::create();
       for ($i=0; $i <= 10 ; $i++) {
+        /* Tanpa method save
         App\Post::insert([
           'title' => $faker->sentence,
           'content' => $faker->paragraph,
           'published' => rand(0,1)
-        ]);
+        ]);*/
+        $post = new App\Post;
+        $post->title = $faker->sentence;
+        $post->content = $faker->paragraph;
+        $post->published = rand(0,1);
+        $post->save();
       }
     }
 }
