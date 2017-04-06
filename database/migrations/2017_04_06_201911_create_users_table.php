@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('password');
             $table->date('birth_date')->nullable();
+            $table->tinyInteger('activated')->default(false);
             $table->timestamps();
         });
     }
