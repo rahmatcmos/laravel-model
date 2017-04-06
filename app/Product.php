@@ -17,6 +17,14 @@ class Product extends Model
     'price' => 'double',
     ];
 
+    protected static function boot()
+    {
+      parent::boot();
+      static::created(function($model) {
+        \Log::info('Berhasil menambah ' . $model->name . '. Stok : ' . $model->stock);
+      });
+    }
+
     protected $dates = ['deleted_at'];
     /* Timestamps
     public $timestamps = false;
