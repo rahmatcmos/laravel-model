@@ -26,7 +26,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+            \App\Product::created(function($model) {
+            \Log::info('Berhasil menambah ' . $model->name . '. Stok : ' . $model->stock . ' (dari EventServiceProvider)');
+        });
     }
 }
