@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    // pilih database
+    protected $connection = 'mysql2';
+
     protected $appends = ['fullname'];
 
     public function setPasswordAttribute($password)
