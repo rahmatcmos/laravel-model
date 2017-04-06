@@ -7,4 +7,9 @@ trait Published {
     {
       static::addGlobalScope(new PublishedScope);
     }
+
+    public static function withDrafts()
+    {
+      return with(new static)->newQueryWithoutScope(new PublishedScope);
+    }
 }
