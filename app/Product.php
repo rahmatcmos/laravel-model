@@ -20,9 +20,12 @@ class Product extends Model
     protected static function boot()
     {
       parent::boot();
-      static::created(function($model) {
+
+      static::observe(new \App\ProductObserver);
+
+      /*static::created(function($model) {
         \Log::info('Berhasil menambah ' . $model->name . '. Stok : ' . $model->stock);
-      });
+      });*/
     }
 
     protected $dates = ['deleted_at'];
