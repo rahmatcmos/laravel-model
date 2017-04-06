@@ -19,13 +19,13 @@ class Product extends Model
 
     protected static function boot()
     {
-      parent::boot();
+      /*parent::boot();
 
       static::updating(function($model) {
         if ( DB::table('orders_products')->where('product_id', $model->id)->count() > 0 && $model->isDirty('name')) {
             return false;
         }
-      });
+      });*/
 
       // static::observe(new \App\ProductObserver);
 
