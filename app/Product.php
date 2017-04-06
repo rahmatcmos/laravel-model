@@ -12,6 +12,11 @@ class Product extends Model
 
     protected $connection = 'mysql2';
 
+    // Atribut Casting
+    protected $casts = [
+    'price' => 'double',
+    ];
+
     protected $dates = ['deleted_at'];
     /* Timestamps
     public $timestamps = false;
@@ -58,4 +63,10 @@ class Product extends Model
           break;
       }
     }
+
+    // Mutator
+    /* public function getPriceAttribute($price)
+    {
+        return (double) $price;
+    } */
 }
