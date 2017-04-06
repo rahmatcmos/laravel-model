@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->boolean('published');
+            $table->timestamp('viewed_at');
             $table->timestamps();
         });
     }
