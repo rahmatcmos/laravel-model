@@ -9,6 +9,10 @@ class User extends Model
     // pilih database
     protected $connection = 'mysql2';
 
+    protected $casts = [
+      'activated' => 'boolean'
+    ];
+
     protected $appends = ['fullname'];
 
     public function setPasswordAttribute($password)
