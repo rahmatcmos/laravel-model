@@ -20,4 +20,14 @@ class User extends Model
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function setBirthDateAttribute($date)
+    {
+        $this->attributes['birth_date'] = \Carbon\Carbon::createFromFormat('d/m/Y', $date)->toDateString();
+    }
+
+    public function getBirthDateAttribute($date)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+    }
 }
