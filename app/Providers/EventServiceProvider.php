@@ -29,5 +29,29 @@ class EventServiceProvider extends ServiceProvider
             \App\Product::created(function($model) {
             \Log::info('Berhasil menambah ' . $model->name . '. Stok : ' . $model->stock . ' (dari EventServiceProvider)');
         });
+
+        \App\Product::updating(function($model) {
+         $changes = [];
+         foreach($model->getDirty() as $attribute => $new){
+             $original = $model->getOriginal($attribute);
+             if ($original != $new) {
+             $change = [
+                 'attribute' => $attribute,
+                 'from' => $original ,
+                 'to' => $new
+             ];
+             $changes[] = $change;
+             }
+         }
+
+         if ( count($changes) > 0 ) {
+         \App\ProductLog::create([
+         'product_id' => $model->id,
+         'changes' => $changes
+         ]);
+        }
+
+         return true;
+      });
     }
 }
