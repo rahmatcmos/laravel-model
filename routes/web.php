@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/product/{id}', function($id) {
+    return App\Product::find($id);
+});
+
 Route::get('/customer/{id}', function($id) {
   try {
     $customer = App\Models\Customer::findOrFail($id);
