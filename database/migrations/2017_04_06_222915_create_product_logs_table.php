@@ -13,7 +13,12 @@ class CreateProductLogsTable extends Migration
      */
     public function up()
     {
-        //
+      Schema::create('product_logs', function(Blueprint $table)
+      {
+        $table->integer('product_id');
+        $table->text('changes');
+        $table->timestamps();
+      });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateProductLogsTable extends Migration
      */
     public function down()
     {
-        //
+      Schema::dropIfExists('product_logs');
     }
 }
